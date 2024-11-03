@@ -1,3 +1,13 @@
+/* DO NOT DELETE */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DO NOT DELETE */
+
+
+/* Anything below this line is deletable */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
