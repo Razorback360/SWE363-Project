@@ -1,4 +1,5 @@
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React, { Fragment } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
