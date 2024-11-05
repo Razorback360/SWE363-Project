@@ -1,6 +1,8 @@
 import { useState } from 'react';
+
+import './index.css';
 import viteLogo from '/vite.svg';
-import "./index.css"
+
 function Home() {
   const [count, setCount] = useState(0);
 
