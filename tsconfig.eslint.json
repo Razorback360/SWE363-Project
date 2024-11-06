@@ -5,7 +5,7 @@
     "./client/*/src/**/*.tsx",
     "./server/*/src/**/*.ts",
     "**/eslint.config.js",
-    "./client/postcss.config.ts",
+    "./client/postcss.config.js",
     "./client/tailwind.config.ts",
     "./client/vite.config.ts"
   ]
