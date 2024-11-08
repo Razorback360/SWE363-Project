@@ -1,5 +1,4 @@
-import { EyeIcon, EyeSlashIcon, UserIcon } from '@heroicons/react/24/outline';
-import { useLocation } from 'react-router-dom';
+import {EyeSlashIcon, UserIcon, ArrowLeftIcon} from '@heroicons/react/24/outline';
 
 import Button from '../../components/Button';
 import ProfileSidebar from '../../components/ProfileSidebar';
@@ -14,8 +13,14 @@ export default function Profile() {
         <ProfileSidebar />
       </aside>
       <main className="flex-1 p-8 bg-white m-8 rounded-lg">
-        <header className="flex justify-between items-center border-b pb-4 mb-8">
-          <h2 className="text-3xl font-bold">Profile Details</h2>
+      <header className="flex justify-between items-center border-b pb-4 mb-8">
+          <h2 className="text-3xl font-bold md:flex hidden">
+            Profile Details
+          </h2>
+          <h2 className="text-3xl font-bold md:hidden flex text-center items-center justify-center">
+            <a href="/profile/mobile"><ArrowLeftIcon width={24} height={24} className="mr-5" /></a>
+            Profile Details
+          </h2>
         </header>
         <section className="flex items-center mb-8 ">
           <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
