@@ -23,7 +23,7 @@ export default function Profile() {
           </h2>
         </header>
         <section className="flex items-center mb-8 ">
-          <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
+          <div className="md:w-32 md:h-32 w-19 h-19 bg-gray-200 rounded-full flex items-center justify-center ">
             <span className="text-gray-400 text-4xl">
               <UserIcon width={60} height={60} />
             </span>
