@@ -32,7 +32,7 @@ const Header = () =>{
                 </div>
             </div>
             <div className="md:hidden flex-row justify-end items-center w-full space-x-2 flex">
-                <a className="rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white" onClick={() => {setSidebarState(!sidebarState)}}>
+                <a href='/profile' className="rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white" onClick={() => {setSidebarState(!sidebarState)}}>
                     <Bars3Icon width={24} height={24}/>
                 </a>
             </div>
