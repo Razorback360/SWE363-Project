@@ -1,11 +1,8 @@
-import {
-  EyeSlashIcon,
-  EyeIcon,
-  UserIcon
-} from '@heroicons/react/24/outline';
+import { EyeIcon, EyeSlashIcon, UserIcon } from '@heroicons/react/24/outline';
 import { useLocation } from 'react-router-dom';
-import ProfileSidebar from '../../components/ProfileSidebar';
+
 import Button from '../../components/Button';
+import ProfileSidebar from '../../components/ProfileSidebar';
 
 export default function Profile() {
   return (
@@ -14,7 +11,7 @@ export default function Profile() {
         <div className="text-gray-600 mb-5">
           <h1 className="text-xl font-bold">Project Title</h1>
         </div>
-        <ProfileSidebar/>
+        <ProfileSidebar />
       </aside>
       <main className="flex-1 p-8 bg-white m-8 rounded-lg">
         <header className="flex justify-between items-center border-b pb-4 mb-8">
@@ -22,7 +19,9 @@ export default function Profile() {
         </header>
         <section className="flex items-center mb-8 ">
           <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center">
-            <span className="text-gray-400 text-4xl"><UserIcon width={60} height={60}/></span>
+            <span className="text-gray-400 text-4xl">
+              <UserIcon width={60} height={60} />
+            </span>
           </div>
           <div className="ml-6">
             <Button className="block mb-2 text-blue-600 border border-blue-600 px-4 py-2 rounded-lg bg-white hover:bg-blue-600 hover:text-white">
@@ -41,54 +40,66 @@ export default function Profile() {
         </section>
         <section>
           <h3 className="text-xl font-semibold mb-4">User Details</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <form className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-gray-600">Label Name</label>
+              <label className="text-gray-600">First Name</label>
               <input
                 type="text"
                 placeholder="AslanHolder"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                pattern="^[A-Za-z]+$"
+                title="First name must be alphabetic letters only."
               />
             </div>
             <div>
-              <label className="text-gray-600">Label Name</label>
+              <label className="text-gray-600">Last Name</label>
               <input
                 type="text"
                 placeholder="AslanHolder"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                pattern="^[A-Za-z]+$"
+                title="Last name must be alphabetic letters only."
               />
             </div>
             <div className="col-span-2">
-              <label className="text-gray-600">Label Name</label>
+              <label className="text-gray-600">Email Address</label>
               <input
-                type="text"
+                type="email"
                 placeholder="AslanHolder"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                title="Email must be in the following example format: janedoe12@outlook.com"
               />
             </div>
             <div className="col-span-2">
-              <label className="text-gray-600">Label Name</label>
+              <label className="text-gray-600">Password</label>
               <div className="relative">
                 <input
                   type="password"
-                  placeholder="Placeholder"
+                  placeholder="************"
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$"
+                  title="Password must have at least 1 of each: Uppercase letter, Lowercase letter, Symbol. Password must be at least 8 chars long"
                 />
                 <a className="absolute inset-y-0 right-4 flex items-center cursor-pointer">
-                  <EyeSlashIcon width={24} height={24}/>
+                  <EyeSlashIcon width={24} height={24} />
                 </a>
               </div>
             </div>
             <div className="col-span-2">
-              <label className="text-gray-600">Label Name</label>
+              <label className="text-gray-600">Blood Typee</label>
               <select className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-                <option>Placeholder</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
               </select>
             </div>
-          </div>
-          <Button className="hover:cursor-not-allowed">
-            Save
-          </Button>
+            <Button type='submit' className="hover:cursor-not-allowed">Save</Button>
+          </form>
         </section>
       </main>
     </div>
