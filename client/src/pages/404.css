@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 .not-found-image {
