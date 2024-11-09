@@ -39,10 +39,10 @@ const Header = () => {
             <Cog8ToothIcon width={24} height={24} />
           </a>
           <a
-            href="/profile"
+            href="/login"
             className="rounded-full bg-gray-300 flex items-center justify-center p-2 hover:cursor-pointer hover:shadow-md hover:border-gray-200 border border-white"
           >
-            <UserIcon width={24} height={24} />
+            Log in
           </a>
         </div>
         <div className="md:hidden flex-row justify-end items-center w-full space-x-2 flex">
