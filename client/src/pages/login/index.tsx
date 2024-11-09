@@ -2,7 +2,7 @@ import './login.css';
 
 const login = () => {
   return (
-    <div className="log-in-page-container">
+    <div className="log-in-page-container login">
       <div className="log-in-container">
         <h1>Welcome Back!</h1>
         <p>Please log in to continue</p>

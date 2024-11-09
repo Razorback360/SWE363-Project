@@ -30,7 +30,7 @@
 }
 
 /* Form styling */
-form {
+.signup form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@ form {
 }
 
 /* Left-align labels */
-form label {
+.signup form label {
   width: 100%;
   text-align: left;
   font-weight: 500;
@@ -48,8 +48,8 @@ form label {
 }
 
 /* Input fields */
-form input[type='email'],
-form input[type='password'] {
+.signup form input[type='email'],
+.signup form input[type='password'] {
   width: 100%;
   padding: 12px;
   border: none;
@@ -62,8 +62,8 @@ form input[type='password'] {
   transition: border-bottom-color 0.3s;
 }
 
-form input[type='email']:focus,
-form input[type='password']:focus {
+.signup form input[type='email']:focus,
+.signup form input[type='password']:focus {
   border-bottom-color: #a1a1a1;
   outline: none;
 }
@@ -105,7 +105,7 @@ form input[type='password']:focus {
 }
 
 /* Button styling */
-form button[type='submit'] {
+.signup form button[type='submit'] {
   width: 100%;
   padding: 10px;
   background-color: #3b82f6;
@@ -119,23 +119,23 @@ form button[type='submit'] {
   transition: background-color 0.3s;
 }
 
-form button[type='submit']:hover {
+.signup form button[type='submit']:hover {
   background-color: #2563eb;
 }
 
 /* Sign in link */
-form p {
+.signup form p {
   font-size: 0.9em;
   color: #6b7280;
   margin-top: 10px;
 }
 
-form p a {
+.signup form p a {
   color: #3b82f6;
   text-decoration: none;
 }
 
-form p a:hover {
+.signup form p a:hover {
   text-decoration: underline;
 }
 
