@@ -1,7 +1,6 @@
 import React, { FC, Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Home from './pages/_app';
 
 interface Preserved {
   _app?: React.ComponentType;
