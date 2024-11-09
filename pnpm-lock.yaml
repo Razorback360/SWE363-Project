@@ -47,9 +47,6 @@ importers:
       '@heroicons/react':
         specifier: ^2.1.5
         version: 2.1.5(react@18.3.1)
-      client:
-        specifier: 'file:'
-        version: 'link:'
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -108,9 +105,6 @@ importers:
       mongoose:
         specifier: ^8.8.0
         version: 8.8.0
-      server:
-        specifier: 'file:'
-        version: 'link:'
     devDependencies:
       '@types/cors':
         specifier: ^2.8.17
