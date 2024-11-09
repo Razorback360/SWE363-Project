@@ -1,6 +1,8 @@
 import React, { FC, Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import Home from './pages/_app';
+
 interface Preserved {
   _app?: React.ComponentType;
   '404'?: React.ComponentType;
@@ -46,6 +48,7 @@ export const FileRouter: FC = () => {
         {routes.map(({ path, component: Component = Fragment }) => (
           <Route key={path} path={path} element={<Component />} />
         ))}
+        <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </App>
