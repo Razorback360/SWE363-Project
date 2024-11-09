@@ -48,7 +48,6 @@ export const FileRouter: FC = () => {
         {routes.map(({ path, component: Component = Fragment }) => (
           <Route key={path} path={path} element={<Component />} />
         ))}
-        <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </App>
