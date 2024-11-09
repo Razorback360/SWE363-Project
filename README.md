@@ -4,7 +4,7 @@
 
 | Username     | Real Name       |
 |--------------|-----------------|
-| Bmbone       | Jihad Al Harbi  |
+| Bmbone       | Jehad Alharbi  |
 | Yokozuna59   | Reda Al Sulais  |
 | aslan19      | Abdullah Aslan  |
 | Razorback360 | Yazeed Hboubati |
