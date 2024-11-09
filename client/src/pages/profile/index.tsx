@@ -1,4 +1,8 @@
-import {EyeSlashIcon, UserIcon, ArrowLeftIcon} from '@heroicons/react/24/outline';
+import {
+  ArrowLeftIcon,
+  EyeSlashIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 
 import Button from '../../components/Button';
 import ProfileSidebar from '../../components/ProfileSidebar';
@@ -13,12 +17,12 @@ export default function Profile() {
         <ProfileSidebar />
       </aside>
       <main className="flex-1 p-8 bg-white m-8 rounded-lg">
-      <header className="flex justify-between items-center border-b pb-4 mb-8">
-          <h2 className="text-3xl font-bold md:flex hidden">
-            Profile Details
-          </h2>
+        <header className="flex justify-between items-center border-b pb-4 mb-8">
+          <h2 className="text-3xl font-bold md:flex hidden">Profile Details</h2>
           <h2 className="text-3xl font-bold md:hidden flex text-center items-center justify-center">
-            <a href="/profile/mobile"><ArrowLeftIcon width={24} height={24} className="mr-5" /></a>
+            <a href="/profile/mobile">
+              <ArrowLeftIcon width={24} height={24} className="mr-5" />
+            </a>
             Profile Details
           </h2>
         </header>
@@ -103,7 +107,9 @@ export default function Profile() {
                 <option>O-</option>
               </select>
             </div>
-            <Button type='submit' className="hover:cursor-not-allowed">Save</Button>
+            <Button type="submit" className="hover:cursor-not-allowed">
+              Save
+            </Button>
           </form>
         </section>
       </main>

@@ -1,6 +1,4 @@
-import {
-  ArrowLeftIcon,
-} from '@heroicons/react/24/outline';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 import Badge from '../../components/Badge';
 import ProfileSidebar from '../../components/ProfileSidebar';
@@ -21,7 +19,9 @@ export default function Donations() {
             Previous Donations
           </h2>
           <h2 className="text-3xl font-bold md:hidden flex text-center items-center justify-center">
-            <a href="/profile/mobile"><ArrowLeftIcon width={24} height={24} className="mr-5" /></a>
+            <a href="/profile/mobile">
+              <ArrowLeftIcon width={24} height={24} className="mr-5" />
+            </a>
             Previous Donations
           </h2>
         </header>
