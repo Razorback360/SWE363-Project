@@ -1,12 +1,8 @@
 import {
   ArrowLeftIcon,
-  EyeIcon,
-  EyeSlashIcon,
-  UserCircleIcon,
 } from '@heroicons/react/24/outline';
 
 import Badge from '../../components/Badge';
-import Button from '../../components/Button';
 import ProfileSidebar from '../../components/ProfileSidebar';
 import './donation.css';
 
