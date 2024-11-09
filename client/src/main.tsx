@@ -9,7 +9,7 @@ import './index.css';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <Header></Header>
+      <Header />
       <FileRouter />
     </BrowserRouter>
   </StrictMode>,
