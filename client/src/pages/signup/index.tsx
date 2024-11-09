@@ -2,7 +2,7 @@ import "./signup.css";
 
 const signup = () => {
   return (
-    <div className="sign-up-page-container">
+    <div className="sign-up-page-container signup">
       <div className="sign-up-container">
         <h1>Welcome!</h1>
         <p>Please sign up to continue</p>
