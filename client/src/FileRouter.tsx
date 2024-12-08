@@ -1,7 +1,6 @@
 import React, { FC, Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-
 interface Preserved {
   _app?: React.ComponentType;
   '404'?: React.ComponentType;

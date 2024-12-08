@@ -3,11 +3,8 @@
 ## Configuration
 
 1. Create a `.env` file inside the `server` directory
-2. Inside the `.env`, write the following:
-    ```
-    PORT=5000
-    MONGO_URI="mongodb://<USERNAME>:<PASSWORD>@localhost:27017/mongoose?authSource=admin"
-    ```
+2. Copy the content of `.env.example` file and paste it in the `.env` file
+3. Modify the placeholder keywords according to your
 
 ## Create a Table
 

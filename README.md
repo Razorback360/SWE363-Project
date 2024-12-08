@@ -3,7 +3,7 @@
 ## Team Members Mapping
 
 | Username     | Real Name       |
-|--------------|-----------------|
+| ------------ | --------------- |
 | Bmbone       | Jihad Al Harbi  |
 | Yokozuna59   | Reda Al Sulais  |
 | aslan19      | Abdullah Aslan  |

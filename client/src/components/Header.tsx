@@ -6,19 +6,17 @@ import {
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { cn } from '../utils/cn';
 
 const Header = () => {
   const [sidebarState, setSidebarState] = useState(false);
-    const location = useLocation()
+  const location = useLocation();
   return (
     <>
       <div className="flex flex-row w-full border-b p-5 pl-10 pr-10 ">
         <div className="flex flex-row justify-center items-center">
-          <img
-            className="w-12 h-12"
-            src="/logo.png"
-          ></img>
+          <img className="w-12 h-12" src="/logo.png"></img>
           <p className="text-center text-xl pl-1 font-bold text-gray-600">
             BloodLink
           </p>
@@ -39,10 +37,14 @@ const Header = () => {
             <Cog8ToothIcon width={24} height={24} />
           </a>
           <a
-            href={location.pathname.includes("profile") ? "/profile" : "/login"}
+            href={location.pathname.includes('profile') ? '/profile' : '/login'}
             className="rounded-full bg-gray-300 flex items-center justify-center p-2 hover:cursor-pointer hover:shadow-md hover:border-gray-200 border border-white"
           >
-            {location.pathname.includes("profile") ? <UserIcon width={24} height={24}/> : "Login"}
+            {location.pathname.includes('profile') ? (
+              <UserIcon width={24} height={24} />
+            ) : (
+              'Login'
+            )}
           </a>
         </div>
         <div className="md:hidden flex-row justify-end items-center w-full space-x-2 flex">
@@ -66,8 +68,15 @@ const Header = () => {
           <a className="p-2 border-b w-1/2" href="/">
             Home
           </a>
-          <a className="p-2 border-b w-1/2" href={location.pathname.includes("profile") ? "/profile/mobile" : "/login"}>
-          {location.pathname.includes("profile") ? "Profile" : "Login"}
+          <a
+            className="p-2 border-b w-1/2"
+            href={
+              location.pathname.includes('profile')
+                ? '/profile/mobile'
+                : '/login'
+            }
+          >
+            {location.pathname.includes('profile') ? 'Profile' : 'Login'}
           </a>
           <a className="p-2 border-b w-1/2" href="/404">
             Donate
