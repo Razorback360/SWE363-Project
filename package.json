@@ -5,6 +5,8 @@
   "scripts": {
     "build": "pnpm --recursive build",
     "dev": "pnpm --recursive --parallel run dev",
+    "format": "prettier -w .",
+    "lint": "eslint .",
     "start": "pnpm --recursive --parallel start"
   },
   "devDependencies": {
