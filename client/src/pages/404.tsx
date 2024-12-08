@@ -1,13 +1,17 @@
 import { RocketLaunchIcon } from '@heroicons/react/24/outline';
 import type { FC } from 'react';
 
-import './404.css';
 import Button from '../components/Button';
+import './404.css';
 
 const NotFound: FC = () => {
   return (
     <main className="not-found-main flex flex-col w-full">
-      <RocketLaunchIcon width={96} height={96} className="text-gray-300 my-20" />
+      <RocketLaunchIcon
+        width={96}
+        height={96}
+        className="text-gray-300 my-20"
+      />
       <h1 className="erorr text-6xl font-bold">
         404
         <br />
@@ -17,7 +21,9 @@ const NotFound: FC = () => {
         We are disappointed to inform you that the page you are trying to access
         does not actually exist! Head back to home down below!
       </p>
-      <Button className="home-button bg-white text-blue-500 hover:shadow-lg shadow-md">Home Page</Button>
+      <Button className="home-button bg-white text-blue-500 hover:shadow-lg shadow-md">
+        Home Page
+      </Button>
     </main>
   );
 };

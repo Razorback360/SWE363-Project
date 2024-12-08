@@ -1,4 +1,4 @@
-import "./signup.css";
+import './signup.css';
 
 const signup = () => {
   return (
@@ -26,7 +26,15 @@ const signup = () => {
             </div>
           </div>
 
-          <button type="submit" onClick={(e) => {e.preventDefault(); location.href = "/profile"}}>Sign Up</button>
+          <button
+            type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              location.href = '/profile';
+            }}
+          >
+            Sign Up
+          </button>
           <p>
             Have an account? <a href="/login">Sign in</a>
           </p>
