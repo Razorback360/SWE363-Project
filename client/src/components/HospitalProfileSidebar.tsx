@@ -26,12 +26,12 @@ import {
           <li>
             <a
               className={cn(
-                location.pathname == '/profile/donationsRequests'
+                location.pathname == '/profile/hospital/donationsRequests'
                   ? 'bg-gray-200 hover:cursor-default'
                   : '',
                 'w-full text-left py-2 px-3 text-gray-600 rounded-md hover:bg-gray-200 flex flex-row hover:cursor-pointer',
               )}
-              href="/profile/donationsRequests"
+              href="/profile/hospital/donationsRequests"
             >
               <FolderArrowDownIcon width={24} height={24} className="mr-2" />{' '}
             Donation Requests
@@ -40,12 +40,12 @@ import {
           <li>
             <a
               className={cn(
-                location.pathname == '/profile/hospital'
+                location.pathname == '/profile/hospital/request'
                   ? 'bg-gray-200 hover:cursor-default'
                   : '',
                 'w-full text-left py-2 px-3 text-gray-600 rounded-md hover:bg-gray-200 flex flex-row hover:cursor-pointer',
               )}
-              href="../request"
+              href="/profile/hospital/request"
             >
               <InformationCircleIcon width={24} height={24} className="mr-2" />{' '}
               New Blood Request
