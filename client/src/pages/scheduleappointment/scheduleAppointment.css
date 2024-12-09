@@ -1,0 +1,158 @@
+/* Container styling */
+.schedule-appointment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Form styling */
+.schedule-appointment-form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items horizontally */
+  gap: 20px; /* Add spacing between form elements */
+}
+
+/* Input styling */
+.schedule-appointment-input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid #ddd; /* Bottom border */
+  border-radius: 6px;
+  font-size: 1rem;
+  transition:
+    border-bottom-color 0.3s,
+    box-shadow 0.3s;
+}
+
+/* Input focus styling */
+.schedule-appointment-input:focus {
+  border-bottom-color: #888; /* Darker gray on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Date input specific styling */
+.schedule-appointment-input[type='date'] {
+  background-color: #f9f9f9;
+}
+
+/* Time input specific styling */
+.schedule-appointment-input[type='time'] {
+  background-color: #f9f9f9;
+}
+
+/* Button styling */
+.schedule-appointment-button {
+  background-color: #007bff; /* Light blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+}
+
+/* Hover effect for the button */
+.schedule-appointment-button:hover {
+  background-color: #0056b3; /* Darker blue */
+  transform: translateY(-2px);
+}
+
+/* Focus effect for the button */
+.schedule-appointment-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #0056b3;
+}
+
+/* Active state for the button */
+.schedule-appointment-button:active {
+  transform: translateY(1px);
+}
+
+/* Disabled button state */
+.schedule-appointment-button:disabled {
+  background-color: #c6d6e0; /* Light gray-blue */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Placeholder styling */
+.schedule-appointment-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Alert styling */
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  z-index: 1000;
+  display: none; /* Hidden by default */
+}
+
+.alert.show {
+  display: block; /* Show when the class is applied */
+}
+
+.alert-message {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Alert button styling */
+.alert-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.alert-button:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .schedule-appointment-form {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .schedule-appointment-input {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .schedule-appointment-button {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+}
