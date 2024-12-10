@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './hospitalRequest.css';
 import Alert from '../../components/Alert';
+import { requestBlood } from '../../utils/requestAPI'; // Adjust the path as necessary
 
 interface HospitalRequestPageProps {
   hospitalId: string;
@@ -18,20 +19,14 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({ hospitalId })
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/blood-request', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ hospitalId, ...formData }),
-      });
+      // Use the imported requestBlood function
+      const response = await requestBlood({ hospitalId, ...formData });
 
-      if (response.ok) {
+      if (response) {
         setAlert({ message: 'Request submitted successfully!', alertType: 'success' });
         setFormData({ bloodType: '', quantity: '', urgency: '' });
       } else {
-        const errorData = await response.json();
-        setAlert({ message: errorData.error || 'An error occurred. Please try again.', alertType: 'error' });
+        setAlert({ message: 'An error occurred. Please try again.', alertType: 'error' });
       }
     } catch (error) {
       console.error('Error submitting blood request:', error);

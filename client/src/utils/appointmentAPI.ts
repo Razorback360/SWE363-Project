@@ -1,22 +1,22 @@
 export const scheduleAppointment = async (appointmentData: any) => {
   try {
-    const response = await fetch('http://localhost:5000/api/appointment', {
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'; // For Vite
+
+    const response = await fetch(`${apiUrl}/api/appointment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(appointmentData),
     });
 
     if (!response.ok) {
-      // Log and throw an error if the response status is not OK
       console.error(`HTTP error! Status: ${response.status}`);
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    // Parse and return the response JSON
     const data = await response.json();
     return data;
   } catch (error) {
     console.error('Error scheduling appointment:', error);
-    throw error; // Rethrow to propagate the error to the caller
+    throw error;
   }
 };
