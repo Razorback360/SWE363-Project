@@ -49,6 +49,7 @@
 
 /* Input fields */
 .signup form input[type='email'],
+.signup form input[type='text'],
 .signup form input[type='password'] {
   width: 100%;
   padding: 12px;

@@ -7,6 +7,7 @@ import appointmentRouter from './routes/appointment.js';
 import hospitalRouter from './routes/hospital.js';
 import requestRouter from './routes/request.js';
 import userRouter from './routes/user.js';
+import authRouter from './routes/auth.js';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use('/user', userRouter);
 app.use('/api/hospital', hospitalRouter);
 app.use('/api/appointment', appointmentRouter);
 app.use('/api/request', requestRouter);
+app.use('/api/auth', authRouter);
 
 const start = async () => {
   try {
