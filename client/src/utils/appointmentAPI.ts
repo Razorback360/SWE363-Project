@@ -1,6 +1,6 @@
 export const scheduleAppointment = async (appointmentData: any) => {
   try {
-    const response = await fetch('http://localhost:5000/schedule-appointment', {
+    const response = await fetch('http://localhost:5000/api/appointment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(appointmentData),
