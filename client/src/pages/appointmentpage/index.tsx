@@ -31,7 +31,7 @@ const HospitalAppointmentsPage: React.FC = () => {
         setError('Hospital ID is missing. Please log in or select a hospital.');
         return;
       }
-  
+
       try {
         const response = await fetch(`${apiUrl}/api/appointment/${hospitalId}`);
         if (!response.ok) {
@@ -39,10 +39,10 @@ const HospitalAppointmentsPage: React.FC = () => {
             `Failed to fetch appointments, status: ${response.status}`,
           );
         }
-  
+
         const data = await response.json();
         console.log('Fetched data:', data);
-  
+
         if (Array.isArray(data)) {
           const formattedAppointments: Appointment[] = data.map(
             (appointment) => ({
@@ -62,10 +62,9 @@ const HospitalAppointmentsPage: React.FC = () => {
         setError('An error occurred while fetching appointments.');
       }
     };
-  
+
     fetchAppointments();
   }, []);
-  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import './hospitalRequest.css';
+import React, { useEffect, useState } from 'react';
+
 import Alert from '../../components/Alert';
 import { requestBlood } from '../../utils/requestAPI';
+import './hospitalRequest.css';
 import './hospitalRequest.css';
 
 interface HospitalRequestPageProps {
@@ -21,7 +22,10 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
   // Validate hospitalId on component mount
   useEffect(() => {
     if (!hospitalId) {
-      setAlert({ message: 'Hospital ID is required to make a request.', alertType: 'error' });
+      setAlert({
+        message: 'Hospital ID is required to make a request.',
+        alertType: 'error',
+      });
     }
   }, [hospitalId]);
 
@@ -29,7 +33,10 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
     e.preventDefault();
 
     if (!hospitalId) {
-      setAlert({ message: 'Hospital ID is missing. Please provide a valid ID.', alertType: 'error' });
+      setAlert({
+        message: 'Hospital ID is missing. Please provide a valid ID.',
+        alertType: 'error',
+      });
       return;
     }
 

@@ -15,16 +15,16 @@ router.get('/:hospitalId', async (req: Request, res: Response) => {
 
     if (!appointments.length) {
       res
-        .sendStatus(404)
+        .status(404)
         .json({ error: 'No appointments found for this hospital' });
       return;
     }
 
-    res.sendStatus(200).json(appointments);
+    res.status(200).json(appointments);
     return;
   } catch (error) {
     console.error(error);
-    res.sendStatus(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' });
     return;
   }
 });
@@ -35,15 +35,15 @@ router.get('/', async (req: Request, res: Response) => {
     const appointments = await Appointment.find().populate('userId', 'email');
 
     if (!appointments.length) {
-      res.sendStatus(404).json({ error: 'No appointments found' });
+      res.status(404).json({ error: 'No appointments found' });
       return;
     }
 
-    res.sendStatus(200).json(appointments);
+    res.status(200).json(appointments);
     return;
   } catch (error) {
     console.error(error);
-    res.sendStatus(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' });
     return;
   }
 });
@@ -55,18 +55,18 @@ router.post('/', async (req: Request, res: Response) => {
 
     // Validation
     if (!userId || !hospitalId || !date || !time) {
-      res.sendStatus(400).json({ error: 'All fields are required' });
+      res.status(400).json({ error: 'All fields are required' });
       return;
     }
 
     const newAppointment = new Appointment({ userId, hospitalId, date, time });
     await newAppointment.save();
 
-    res.sendStatus(201).json({ newAppointment });
+    res.status(201).json({ newAppointment });
     return;
   } catch (error) {
     console.error(error);
-    res.sendStatus(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' });
     return;
   }
 });

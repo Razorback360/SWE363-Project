@@ -9,9 +9,11 @@ router.get('/', async (_req, res) => {
   try {
     const hospitals = await Hospital.find();
     res.status(200).json(hospitals);
+    return;
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
+    return;
   }
 });
 
@@ -27,9 +29,11 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 
     res.status(200).json(hospital);
+    return;
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
+    return;
   }
 });
 
@@ -39,18 +43,18 @@ router.post('/', async (req, res) => {
     const { name, location, contactNumber } = req.body;
 
     if (!name || !location || !contactNumber) {
-      res.sendStatus(400).json({ error: 'All fields are required' });
+      res.status(400).json({ error: 'All fields are required' });
       return;
     }
 
     const newHospital = new Hospital({ name, location, contactNumber });
     const savedHospital = await newHospital.save();
 
-    res.sendStatus(201).json(savedHospital);
+    res.status(201).json(savedHospital);
     return;
   } catch (error) {
     console.error('Error creating hospital:', error);
-    res.sendStatus(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' });
     return;
   }
 });

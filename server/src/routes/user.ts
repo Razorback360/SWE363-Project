@@ -7,7 +7,7 @@ const router = Router();
 // Sample routes, not to be used in deployment, only for reference.
 router.get('/', async (_req, res) => {
   const allUsers = await UserModel.find();
-  res.sendStatus(200).json(allUsers);
+  res.status(200).json(allUsers);
 });
 
 interface UserParams {
@@ -20,7 +20,7 @@ router.get('/:id', async (req: Request<UserParams>, res: Response) => {
     const user = await UserModel.findById(id);
 
     if (!user) {
-      res.sendStatus(404).json({ error: 'User not found' });
+      res.status(404).json({ error: 'User not found' });
       return;
     }
 
