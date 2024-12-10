@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-enum BloodType {
+export enum BloodType {
   'A+',
   'A-',
   'B+',
