@@ -26,20 +26,23 @@ const HospitalAppointmentsPage: React.FC = () => {
 
   useEffect(() => {
     const fetchAppointments = async () => {
+      const hospitalId = sessionStorage.getItem('hospitalId');
+      if (!hospitalId) {
+        setError('Hospital ID is missing. Please log in or select a hospital.');
+        return;
+      }
+  
       try {
-        // Use the base URL for fetching appointments
-        const response = await fetch(
-          `${apiUrl}/api/appointment/60c72b2f9f1b2c001c8e7e23`,
-        );
+        const response = await fetch(`${apiUrl}/api/appointment/${hospitalId}`);
         if (!response.ok) {
           throw new Error(
             `Failed to fetch appointments, status: ${response.status}`,
           );
         }
-
+  
         const data = await response.json();
         console.log('Fetched data:', data);
-
+  
         if (Array.isArray(data)) {
           const formattedAppointments: Appointment[] = data.map(
             (appointment) => ({
@@ -59,9 +62,10 @@ const HospitalAppointmentsPage: React.FC = () => {
         setError('An error occurred while fetching appointments.');
       }
     };
-
+  
     fetchAppointments();
   }, []);
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,35 +101,6 @@ const HospitalAppointmentsPage: React.FC = () => {
         {appointments.map((appointment) => (
           <AppointmentCard key={appointment.id} appointment={appointment} />
         ))}
-      </div>
-
-      {/* Form to schedule a new appointment */}
-      <div className="schedule-form">
-        <h2>Schedule a New Appointment</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Donor Name"
-            value={formData.donorName}
-            onChange={(e) =>
-              setFormData({ ...formData, donorName: e.target.value })
-            }
-          />
-          <input
-            type="date"
-            value={formData.date}
-            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-          />
-          <input
-            type="time"
-            value={formData.time}
-            onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-          />
-          <button type="submit">Schedule Appointment</button>
-        </form>
-
-        {/* Display alert message */}
-        {alertMessage && <div className="alert">{alertMessage}</div>}
       </div>
     </div>
   );

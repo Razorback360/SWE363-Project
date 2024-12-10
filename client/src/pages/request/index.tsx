@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import './hospitalRequest.css';
 import Alert from '../../components/Alert';
 import { requestBlood } from '../../utils/requestAPI';
 import './hospitalRequest.css';
 
 interface HospitalRequestPageProps {
-  hospitalId: string;
+  hospitalId: string | null; // Allow for null to validate
 }
 
 const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
@@ -18,8 +18,20 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
   });
   const [alert, setAlert] = useState({ message: '', alertType: '' }); // Updated state for managing alerts
 
+  // Validate hospitalId on component mount
+  useEffect(() => {
+    if (!hospitalId) {
+      setAlert({ message: 'Hospital ID is required to make a request.', alertType: 'error' });
+    }
+  }, [hospitalId]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!hospitalId) {
+      setAlert({ message: 'Hospital ID is missing. Please provide a valid ID.', alertType: 'error' });
+      return;
+    }
 
     try {
       // Use the imported requestBlood function
