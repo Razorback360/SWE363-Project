@@ -1,6 +1,8 @@
 import { UserGroupIcon, UserIcon } from '@heroicons/react/24/outline';
 import type { FC } from 'react';
 
+import donateBlood from '../assets/donate-blood.png';
+
 const Home: FC = () => {
   return (
     <div>
@@ -8,7 +10,7 @@ const Home: FC = () => {
         <div className="flex items-center justify-center">
           <img
             className="w-96 rounded-lg"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw_HeSzHfBorKS4muw4IIeVvvRgnhyO8Gn8w&s"
+            src={donateBlood}
             alt="Donation image"
           />
         </div>
@@ -114,7 +116,7 @@ const Home: FC = () => {
 
         <div className="text-center mt-8">
           <a
-            href="#"
+            href="/feedback"
             className="px-6 py-3 text-[#ffffff] bg-[#0F62FE] hover:bg-blue-700 rounded-md font-semibold"
           >
             Feedback

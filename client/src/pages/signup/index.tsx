@@ -27,7 +27,12 @@ const Signup = () => {
         !formData.firstName ||
         !formData.lastName
       ) {
-        alert({ message: 'Missing Credentials', alertType: 'error' });
+        alert(
+          JSON.stringify({
+            message: 'Missing Credentials',
+            alertType: 'error',
+          }),
+        );
         return;
       }
     } else {
@@ -35,13 +40,20 @@ const Signup = () => {
         !formData.email ||
         !formData.password ||
         !formData.confirmPassword ||
-        !formData.name ||
-        !formData.location ||
+        !formData.firstName || // firstName is used as name
+        !formData.lastName || // lastName is used as locatiopn
         !formData.contact
       ) {
-        alert({ message: 'Missing Credentials', alertType: 'error' });
+        alert(
+          JSON.stringify({
+            message: 'Missing Credentials',
+            alertType: 'error',
+          }),
+        );
         return;
       }
+      formData.name = formData.firstName;
+      formData.location = formData.lastName;
     }
 
     try {
@@ -51,17 +63,21 @@ const Signup = () => {
       if (response) {
         location.href = '/';
       } else {
-        alert({
-          message: 'An error occurred. Please try again.',
-          alertType: 'error',
-        });
+        alert(
+          JSON.stringify({
+            message: 'An error occurred. Please try again.',
+            alertType: 'error',
+          }),
+        );
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      alert({
-        message: 'An error occurred. Please try again.',
-        alertType: 'error',
-      });
+      alert(
+        JSON.stringify({
+          message: 'An error occurred. Please try again.',
+          alertType: 'error',
+        }),
+      );
     }
   };
 

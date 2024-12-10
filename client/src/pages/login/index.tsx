@@ -13,7 +13,9 @@ const Login = () => {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
-      alert({ message: 'Missing Credentials', alertType: 'error' });
+      alert(
+        JSON.stringify({ message: 'Missing Credentials', alertType: 'error' }),
+      );
       return;
     }
 
@@ -24,17 +26,21 @@ const Login = () => {
       if (response) {
         location.href = '/';
       } else {
-        alert({
-          message: 'An error occurred. Please try again.',
-          alertType: 'error',
-        });
+        alert(
+          JSON.stringify({
+            message: 'An error occurred. Please try again.',
+            alertType: 'error',
+          }),
+        );
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      alert({
-        message: 'An error occurred. Please try again.',
-        alertType: 'error',
-      });
+      alert(
+        JSON.stringify({
+          message: 'An error occurred. Please try again.',
+          alertType: 'error',
+        }),
+      );
     }
   };
 
@@ -70,9 +76,9 @@ const Login = () => {
               <input type="checkbox" />
               <label>Remember me</label>
             </div>
-            <p className="forgot-password">
+            {/* <p className="forgot-password">
               <a href="#"> Forgot password? </a>
-            </p>
+            </p> */}
           </div>
 
           <button type="submit">Log In</button>
