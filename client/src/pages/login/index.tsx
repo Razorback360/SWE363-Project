@@ -71,13 +71,7 @@ const Login = () => {
             </p>
           </div>
 
-          <button
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              location.href = '/profile';
-            }}
-          >
+          <button type="submit">
             Log In
           </button>
           <p>

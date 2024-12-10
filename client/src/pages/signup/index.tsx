@@ -97,13 +97,7 @@ const Signup = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              location.href = '/profile';
-            }}
-          >
+          <button type="submit">
             Sign Up
           </button>
           <p>
