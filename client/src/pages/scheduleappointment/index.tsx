@@ -23,38 +23,37 @@ const ScheduleAppointment = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // Check if the selected date and time are in the past
-  if (isPastDate(formData.date, formData.time)) {
-    setAlertMessage(
-      'You cannot schedule an appointment in the past. Please choose a future date and time.',
-    );
-    setShowAlert(true);
-    return;
-  }
+    // Check if the selected date and time are in the past
+    if (isPastDate(formData.date, formData.time)) {
+      setAlertMessage(
+        'You cannot schedule an appointment in the past. Please choose a future date and time.',
+      );
+      setShowAlert(true);
+      return;
+    }
 
-  // Retrieve user ID from session storage or another source
-  const userId = sessionStorage.getItem('userId');
-  if (!userId) {
-    setAlertMessage('User ID is missing. Please log in and try again.');
-    setShowAlert(true);
-    return;
-  }
+    // Retrieve user ID from session storage or another source
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) {
+      setAlertMessage('User ID is missing. Please log in and try again.');
+      setShowAlert(true);
+      return;
+    }
 
-  try {
-    // Add userId to the form data
-    const dataToSend = { ...formData, userId };
-    const response = await scheduleAppointment(dataToSend);
-    setAlertMessage(response.message || 'Appointment scheduled successfully');
-    setShowAlert(true);
-  } catch (error) {
-    console.error('Error details:', error);
-    setAlertMessage('Failed to schedule appointment');
-    setShowAlert(true);
-  }
-};
-
+    try {
+      // Add userId to the form data
+      const dataToSend = { ...formData, userId };
+      const response = await scheduleAppointment(dataToSend);
+      setAlertMessage(response.message || 'Appointment scheduled successfully');
+      setShowAlert(true);
+    } catch (error) {
+      console.error('Error details:', error);
+      setAlertMessage('Failed to schedule appointment');
+      setShowAlert(true);
+    }
+  };
 
   const closeAlert = () => {
     setShowAlert(false);

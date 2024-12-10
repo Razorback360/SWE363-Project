@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './HospitalAppointmentsPage.css';
+
 import AppointmentCard from '../../components/AppointmentCard';
-import { scheduleAppointment } from '../../utils/appointmentAPI'; // Import the scheduleAppointment function
+import { scheduleAppointment } from '../../utils/appointmentAPI';
+import './HospitalAppointmentsPage.css';
 
 interface Appointment {
   id: string;
@@ -13,7 +14,11 @@ interface Appointment {
 const HospitalAppointmentsPage: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [formData, setFormData] = useState({ donorName: '', date: '', time: '' });
+  const [formData, setFormData] = useState({
+    donorName: '',
+    date: '',
+    time: '',
+  });
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   // Define the base URL
@@ -30,19 +35,23 @@ const HospitalAppointmentsPage: React.FC = () => {
       try {
         const response = await fetch(`${apiUrl}/api/appointment/${hospitalId}`);
         if (!response.ok) {
-          throw new Error(`Failed to fetch appointments, status: ${response.status}`);
+          throw new Error(
+            `Failed to fetch appointments, status: ${response.status}`,
+          );
         }
   
         const data = await response.json();
         console.log('Fetched data:', data);
   
         if (Array.isArray(data)) {
-          const formattedAppointments: Appointment[] = data.map((appointment) => ({
-            id: appointment._id,
-            date: appointment.date,
-            time: appointment.time,
-            userId: appointment.userId,
-          }));
+          const formattedAppointments: Appointment[] = data.map(
+            (appointment) => ({
+              id: appointment._id,
+              date: appointment.date,
+              time: appointment.time,
+              userId: appointment.userId,
+            }),
+          );
           setAppointments(formattedAppointments);
         } else {
           console.error('Data is not an array:', data);
@@ -69,7 +78,12 @@ const HospitalAppointmentsPage: React.FC = () => {
       // Optionally, refetch appointments or add the new appointment to the state
       setAppointments((prev) => [
         ...prev,
-        { id: response._id, date: formData.date, time: formData.time, userId: null },
+        {
+          id: response._id,
+          date: formData.date,
+          time: formData.time,
+          userId: null,
+        },
       ]);
 
       // Reset form data

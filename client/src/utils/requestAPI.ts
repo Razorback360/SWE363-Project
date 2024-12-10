@@ -1,8 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const requestBlood = async (requestData: any) => {
   try {
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'; // For Vite
 
-    const response = await fetch(`${apiUrl}/api/blood-request`, {
+    const response = await fetch(`${apiUrl}/api/request`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestData),

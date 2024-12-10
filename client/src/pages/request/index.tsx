@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './hospitalRequest.css';
 import Alert from '../../components/Alert';
-import { requestBlood } from '../../utils/requestAPI'; // Adjust the path as necessary
+import { requestBlood } from '../../utils/requestAPI';
+import './hospitalRequest.css';
 
 interface HospitalRequestPageProps {
   hospitalId: string | null; // Allow for null to validate
 }
 
-const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({ hospitalId }) => {
+const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
+  hospitalId,
+}) => {
   const [formData, setFormData] = useState({
     bloodType: '',
     quantity: '',
@@ -35,14 +38,23 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({ hospitalId })
       const response = await requestBlood({ hospitalId, ...formData });
 
       if (response) {
-        setAlert({ message: 'Request submitted successfully!', alertType: 'success' });
+        setAlert({
+          message: 'Request submitted successfully!',
+          alertType: 'success',
+        });
         setFormData({ bloodType: '', quantity: '', urgency: '' });
       } else {
-        setAlert({ message: 'An error occurred. Please try again.', alertType: 'error' });
+        setAlert({
+          message: 'An error occurred. Please try again.',
+          alertType: 'error',
+        });
       }
     } catch (error) {
       console.error('Error submitting blood request:', error);
-      setAlert({ message: 'An error occurred. Please try again.', alertType: 'error' });
+      setAlert({
+        message: 'An error occurred. Please try again.',
+        alertType: 'error',
+      });
     }
   };
 
@@ -52,12 +64,16 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({ hospitalId })
 
   return (
     <div className="hospital-request-container">
-      {alert.message && <Alert message={alert.message} onClose={handleCloseAlert} />}
+      {alert.message && (
+        <Alert message={alert.message} onClose={handleCloseAlert} />
+      )}
       <form className="hospital-request-form" onSubmit={handleSubmit}>
         <select
           className="hospital-request-input"
           value={formData.bloodType}
-          onChange={(e) => setFormData({ ...formData, bloodType: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, bloodType: e.target.value })
+          }
           required
         >
           <option value="">Select Blood Type</option>
@@ -75,14 +91,18 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({ hospitalId })
           type="number"
           placeholder="Quantity (units)"
           value={formData.quantity}
-          onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, quantity: e.target.value })
+          }
           min="1"
           required
         />
         <select
           className="hospital-request-input"
           value={formData.urgency}
-          onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, urgency: e.target.value })
+          }
           required
         >
           <option value="">Select Urgency</option>
