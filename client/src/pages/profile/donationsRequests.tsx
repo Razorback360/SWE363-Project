@@ -16,7 +16,7 @@ export default function Donations() {
       <main className="flex-1 p-8 bg-white m-8 rounded-lg overflow-hidden">
         <header className="flex justify-between items-center border-b pb-4 mb-8">
           <h2 className="text-3xl font-bold md:flex hidden">
-          Donation Requests
+            Donation Requests
           </h2>
           <h2 className="text-3xl font-bold md:hidden flex text-center items-center justify-center">
             <a href="/profile/mobile">

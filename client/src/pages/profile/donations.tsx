@@ -1,19 +1,23 @@
-import { useEffect, useState } from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { useEffect, useState } from 'react';
+
 import Badge from '../../components/Badge';
 import ProfileSidebar from '../../components/ProfileSidebar';
-import './donation.css';
 import { checkLogin } from '../../utils/checkLogin';
+import './donation.css';
 
 export default function Donations() {
-  const [appointments, setAppointments] = useState([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [appointments, setAppointments] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchAppointments = async () => {
       const { user } = checkLogin();
       if (user) {
         try {
-          const response = await fetch(`http://127.0.0.1:5000/api/appointment/user/${user}`);
+          const response = await fetch(
+            `http://127.0.0.1:5000/api/appointment/user/${user}`,
+          );
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import './login.css';
+
 import { login } from '../../utils/authAPI';
+import './login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -44,14 +45,22 @@ const Login = () => {
         <p>Please log in to continue</p>
         <form onSubmit={handleSubmit}>
           <label>Email Address</label>
-          <input type="email" placeholder="Placeholder" onChange={(e) => {
-            setFormData({ ...formData, email: e.target.value });
-          }}/>
+          <input
+            type="email"
+            placeholder="Placeholder"
+            onChange={(e) => {
+              setFormData({ ...formData, email: e.target.value });
+            }}
+          />
 
           <label>Password</label>
-          <input type="password" placeholder="Placeholder" onChange={(e) => {
-            setFormData({ ...formData, password: e.target.value });
-          }} />
+          <input
+            type="password"
+            placeholder="Placeholder"
+            onChange={(e) => {
+              setFormData({ ...formData, password: e.target.value });
+            }}
+          />
           <p className="password-note">
             It must be a combination of minimum 8 letters, numbers, and symbols.
           </p>
@@ -66,9 +75,7 @@ const Login = () => {
             </p>
           </div>
 
-          <button type="submit">
-            Log In
-          </button>
+          <button type="submit">Log In</button>
           <p>
             No account yet? <a href="/signup">Sign Up</a>
           </p>

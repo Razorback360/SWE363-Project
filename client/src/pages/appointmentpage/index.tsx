@@ -28,6 +28,7 @@ const HospitalAppointmentsPage: React.FC = () => {
     time: '',
   });
   const [error, setError] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   // Define the base URL
@@ -82,10 +83,14 @@ const HospitalAppointmentsPage: React.FC = () => {
   const handleSearchSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${apiUrl}/api/hospitals/search?query=${searchQuery}`);
+      const response = await fetch(
+        `${apiUrl}/api/hospitals/search?query=${searchQuery}`,
+      );
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(`Failed to fetch hospitals, status: ${response.status}`);
+        throw new Error(
+          `Failed to fetch hospitals, status: ${response.status}`,
+        );
       }
       setHospitals(data);
     } catch (error) {
@@ -94,6 +99,7 @@ const HospitalAppointmentsPage: React.FC = () => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -136,7 +142,9 @@ const HospitalAppointmentsPage: React.FC = () => {
       {error && <p>{error}</p>}
       <div className="appointments-list">
         {hospitals.map((hospital) => (
-          <div key={hospital.id}>{hospital.name} - {hospital.location}</div>
+          <div key={hospital.id}>
+            {hospital.name} - {hospital.location}
+          </div>
         ))}
         {appointments.map((appointment) => (
           <AppointmentCard key={appointment.id} appointment={appointment} />
