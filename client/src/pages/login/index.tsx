@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './login.css';
 import { login } from '../../utils/authAPI';
-import { redirect } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -22,11 +21,7 @@ const Login = () => {
       const response = await login(formData);
 
       if (response) {
-        alert({
-          message: 'Request submitted successfully!',
-          alertType: 'success',
-        });
-        redirect('/');
+        location.href = '/';
       } else {
         alert({
           message: 'An error occurred. Please try again.',

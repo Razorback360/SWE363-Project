@@ -1,4 +1,3 @@
-import { redirect } from 'react-router-dom';
 import './signup.css';
 import { useState } from 'react';
 import { register } from '../../utils/authAPI';
@@ -36,11 +35,7 @@ const Signup = () => {
       const response = await register({ ...formData, isHospital });
 
       if (response) {
-        alert({
-          message: 'Request submitted successfully!',
-          alertType: 'success',
-        });
-        redirect('/');
+        location.href = '/';
       } else {
         alert({
           message: 'An error occurred. Please try again.',
