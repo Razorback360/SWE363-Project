@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from 'react';
-
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import Alert from '../../components/Alert';
-import { requestBlood } from '../../utils/requestAPI';
 import './hospitalRequest.css';
-import './hospitalRequest.css';
+import HospitalProfileSidebar from '../../components/HospitalProfileSidebar';
 
 interface HospitalRequestPageProps {
   hospitalId: string | null; // Allow for null to validate
 }
 
-const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
-  hospitalId,
-}) => {
+
+const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({ hospitalId }) => {
   const [formData, setFormData] = useState({
     bloodType: '',
     quantity: '',
     urgency: '',
   });
-  const [alert, setAlert] = useState({ message: '', alertType: '' }); // Updated state for managing alerts
+  const [alert, setAlert] = useState({ message: '', alertType: '' });
 
-  // Validate hospitalId on component mount
   useEffect(() => {
     if (!hospitalId) {
       setAlert({
@@ -41,8 +38,8 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
     }
 
     try {
-      // Use the imported requestBlood function
-      const response = await requestBlood({ hospitalId, ...formData });
+      // Simulating API call response
+      const response = true; // Replace with actual API logic
 
       if (response) {
         setAlert({
@@ -66,61 +63,104 @@ const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
   };
 
   const handleCloseAlert = () => {
-    setAlert({ message: '', alertType: '' }); // Clear the alert when closed
+    setAlert({ message: '', alertType: '' });
   };
 
   return (
-    <div className="hospital-request-container">
-      {alert.message && (
-        <Alert message={alert.message} onClose={handleCloseAlert} />
-      )}
-      <form className="hospital-request-form" onSubmit={handleSubmit}>
-        <select
-          className="hospital-request-input"
-          value={formData.bloodType}
-          onChange={(e) =>
-            setFormData({ ...formData, bloodType: e.target.value })
-          }
-          required
-        >
-          <option value="">Select Blood Type</option>
-          <option value="A+">A+</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B-">B-</option>
-          <option value="AB+">AB+</option>
-          <option value="AB-">AB-</option>
-          <option value="O+">O+</option>
-          <option value="O-">O-</option>
-        </select>
-        <input
-          className="hospital-request-input"
-          type="number"
-          placeholder="Quantity (units)"
-          value={formData.quantity}
-          onChange={(e) =>
-            setFormData({ ...formData, quantity: e.target.value })
-          }
-          min="1"
-          required
-        />
-        <select
-          className="hospital-request-input"
-          value={formData.urgency}
-          onChange={(e) =>
-            setFormData({ ...formData, urgency: e.target.value })
-          }
-          required
-        >
-          <option value="">Select Urgency</option>
-          <option value="Low">Low</option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
-        </select>
-        <button className="hospital-request-button" type="submit">
-          Submit Request
-        </button>
-      </form>
+    <div className="flex min-h-screen bg-gray-100">
+      <aside className="w-1/5 bg-white p-5 shadow-md md:flex flex-col hidden">
+        <div className="text-gray-600 mb-5">
+          <h1 className="text-xl font-bold">Hospital Request</h1>
+        </div>
+        <HospitalProfileSidebar />
+      </aside>
+      <main className="flex-1 p-8 bg-white m-8 rounded-lg overflow-hidden">
+        <header className="flex justify-between items-center border-b pb-4 mb-8">
+          <h2 className="text-3xl font-bold md:flex hidden">Request Blood</h2>
+          <h2 className="text-3xl font-bold md:hidden flex text-center items-center justify-center">
+            <a href="/dashboard">
+              <ArrowLeftIcon width={24} height={24} className="mr-5" />
+            </a>
+            Request Blood
+          </h2>
+        </header>
+
+        {alert.message && (
+          <Alert message={alert.message} onClose={handleCloseAlert} />
+        )}
+
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div className="flex flex-col space-y-2">
+            <label htmlFor="bloodType" className="font-semibold">
+              Blood Type
+            </label>
+            <select
+              id="bloodType"
+              className="hospital-request-input"
+              value={formData.bloodType}
+              onChange={(e) =>
+                setFormData({ ...formData, bloodType: e.target.value })
+              }
+              required
+            >
+              <option value="">Select Blood Type</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col space-y-2">
+            <label htmlFor="quantity" className="font-semibold">
+              Quantity (units)
+            </label>
+            <input
+              id="quantity"
+              className="hospital-request-input"
+              type="number"
+              placeholder="Enter quantity"
+              value={formData.quantity}
+              onChange={(e) =>
+                setFormData({ ...formData, quantity: e.target.value })
+              }
+              min="1"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col space-y-2">
+            <label htmlFor="urgency" className="font-semibold">
+              Urgency Level
+            </label>
+            <select
+              id="urgency"
+              className="hospital-request-input"
+              value={formData.urgency}
+              onChange={(e) =>
+                setFormData({ ...formData, urgency: e.target.value })
+              }
+              required
+            >
+              <option value="">Select Urgency</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            className="hospital-request-button bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+          >
+            Submit Request
+          </button>
+        </form>
+      </main>
     </div>
   );
 };
