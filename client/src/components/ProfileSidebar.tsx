@@ -40,15 +40,15 @@ const ProfileSidebar = () => {
         <li>
           <a
             className={cn(
-              location.pathname == '/profile/questionnaires'
+              location.pathname == '/profile/questionnaire'
                 ? 'bg-gray-200 hover:cursor-default'
                 : '',
               'w-full text-left py-2 px-3 text-gray-600 rounded-md hover:bg-gray-200 flex flex-row hover:cursor-pointer',
             )}
-            href="/profile/donations"
+            href="/profile/questionnaire"
           >
             <InformationCircleIcon width={24} height={24} className="mr-2" />{' '}
-            Old Questionnaires
+            Fill Out Questionnaire
           </a>
         </li>
       </ul>
