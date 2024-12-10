@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+
 import Appointment from '../models/appointment.js';
 
 const router = Router();
@@ -7,17 +8,24 @@ const router = Router();
 router.get('/:hospitalId', async (req: Request, res: Response) => {
   try {
     const { hospitalId } = req.params;
-    const appointments = await Appointment.find({ hospitalId }).populate('userId', 'email');
+    const appointments = await Appointment.find({ hospitalId }).populate(
+      'userId',
+      'email',
+    );
 
     if (!appointments.length) {
-      res.status(404).json({ error: 'No appointments found for this hospital' });
+      res
+        .sendStatus(404)
+        .json({ error: 'No appointments found for this hospital' });
       return;
     }
 
-    res.status(200).json(appointments);
+    res.sendStatus(200).json(appointments);
+    return;
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.sendStatus(500).json({ error: 'Internal Server Error' });
+    return;
   }
 });
 
@@ -27,14 +35,16 @@ router.get('/', async (req: Request, res: Response) => {
     const appointments = await Appointment.find().populate('userId', 'email');
 
     if (!appointments.length) {
-      res.status(404).json({ error: 'No appointments found' });
+      res.sendStatus(404).json({ error: 'No appointments found' });
       return;
     }
 
-    res.status(200).json(appointments);
+    res.sendStatus(200).json(appointments);
+    return;
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.sendStatus(500).json({ error: 'Internal Server Error' });
+    return;
   }
 });
 
@@ -45,17 +55,19 @@ router.post('/', async (req: Request, res: Response) => {
 
     // Validation
     if (!userId || !hospitalId || !date || !time) {
-      res.status(400).json({ error: 'All fields are required' });
+      res.sendStatus(400).json({ error: 'All fields are required' });
       return;
     }
 
     const newAppointment = new Appointment({ userId, hospitalId, date, time });
     await newAppointment.save();
 
-    res.status(201).json({ newAppointment });
+    res.sendStatus(201).json({ newAppointment });
+    return;
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.sendStatus(500).json({ error: 'Internal Server Error' });
+    return;
   }
 });
 
