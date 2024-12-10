@@ -1,17 +1,62 @@
+import { useState } from 'react';
 import './login.css';
+import { login } from '../../utils/authAPI';
+import { redirect } from 'react-router-dom';
 
-const login = () => {
+const Login = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.email || !formData.password) {
+      alert({ message: 'Missing Credentials', alertType: 'error' });
+      return;
+    }
+
+    try {
+      // Use the imported requestBlood function
+      const response = await login(formData);
+
+      if (response) {
+        alert({
+          message: 'Request submitted successfully!',
+          alertType: 'success',
+        });
+        redirect('/');
+      } else {
+        alert({
+          message: 'An error occurred. Please try again.',
+          alertType: 'error',
+        });
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert({
+        message: 'An error occurred. Please try again.',
+        alertType: 'error',
+      });
+    }
+  };
+
   return (
     <div className="log-in-page-container login">
       <div className="log-in-container">
         <h1>Welcome Back!</h1>
         <p>Please log in to continue</p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>Email Address</label>
-          <input type="email" placeholder="Placeholder" />
+          <input type="email" placeholder="Placeholder" onChange={(e) => {
+            setFormData({ ...formData, email: e.target.value });
+          }}/>
 
           <label>Password</label>
-          <input type="password" placeholder="Placeholder" />
+          <input type="password" placeholder="Placeholder" onChange={(e) => {
+            setFormData({ ...formData, password: e.target.value });
+          }} />
           <p className="password-note">
             It must be a combination of minimum 8 letters, numbers, and symbols.
           </p>
@@ -44,4 +89,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
