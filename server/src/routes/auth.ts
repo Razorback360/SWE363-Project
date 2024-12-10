@@ -7,12 +7,12 @@ import Hospital from '../models/hospital.js';
 const router = Router();
 const saltRounds = 10;
 // Sample routes, not to be used in deployment, only for reference.
-router.post('/auth/login', async (_req, res) => {
+router.post('/login', async (_req, res) => {
     const { email, password } = _req.body;
-
     const user = await UserModel.findOne({ email });
     if (!user) {
-        res.sendStatus(404).json({ error: 'Incorrect Email or Password' });
+        console.log(user);
+        res.status(404).json({ error: 'Incorrect Email or Password' }).send();
         return;
     }
 
@@ -21,15 +21,13 @@ router.post('/auth/login', async (_req, res) => {
         res.sendStatus(404).json({ error: 'Incorrect Email or Password' });
         return;
     }
-    res.cookie('user', user._id);
-    res.cookie('isHospital', user.isHospital);
-    res.status(200).send()
+    res.status(200).json({"user": user._id, "isHospital": user.isHospital}).send()
     return;
 });
 
-router.post('/auth/register', async (_req, res) => {
+router.post('/register', async (_req, res) => {
     const { firstName, lastName, email, password, name, location, contactNumber, isHospital } = _req.body;
-
+    console.log(_req);
     // Validate the request body
     if (isHospital) {
         if (!email || !password || !name || !location || !contactNumber) {
@@ -37,6 +35,7 @@ router.post('/auth/register', async (_req, res) => {
             return;
         }
     } else if (!firstName || !lastName || !email || !password) {
+        console.log("here");
         res.status(400).json({ error: 'All fields are required' });
         return;
     }
@@ -44,6 +43,7 @@ router.post('/auth/register', async (_req, res) => {
     // Check if the user already exists
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
+        console.log(existingUser);
         res.status(400).json({ error: 'User already exists' });
         return;
     }
@@ -73,9 +73,7 @@ router.post('/auth/register', async (_req, res) => {
         });
         await newHospital.save();
     }
-    res.cookie('user', savedUser._id);
-    res.cookie('isHospital', savedUser.isHospital);
-    res.status(200).send()
+    res.status(200).json({"user": savedUser._id, "isHospital": savedUser.isHospital}).send()
     return;
 });
 
