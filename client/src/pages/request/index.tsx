@@ -1,42 +1,52 @@
 import React, { useState } from 'react';
-import { requestBlood } from '../../utils/requestAPI'; // Import the requestBlood API function
-import './hospitalRequest.css'; // Create this file for styles
+import './hospitalRequest.css';
+import Alert from '../../components/Alert';
 
-const HospitalRequestPage = () => {
+interface HospitalRequestPageProps {
+  hospitalId: string;
+}
+
+const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({ hospitalId }) => {
   const [formData, setFormData] = useState({
     bloodType: '',
     quantity: '',
     urgency: '',
-    hospitalName: '',
   });
+  const [alert, setAlert] = useState({ message: '', alertType: '' }); // Updated state for managing alerts
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await requestBlood(formData); // Use the API function here
+      const response = await fetch('/api/blood-request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ hospitalId, ...formData }),
+      });
 
-      if (response.message) {
-        alert('Request submitted successfully!');
-        setFormData({ bloodType: '', quantity: '', urgency: '', hospitalName: '' });
+      if (response.ok) {
+        setAlert({ message: 'Request submitted successfully!', alertType: 'success' });
+        setFormData({ bloodType: '', quantity: '', urgency: '' });
+      } else {
+        const errorData = await response.json();
+        setAlert({ message: errorData.error || 'An error occurred. Please try again.', alertType: 'error' });
       }
-    } catch (error: any) {
-      console.error('Error submitting request:', error);
-      alert(error.message || 'An error occurred. Please try again later.');
+    } catch (error) {
+      console.error('Error submitting blood request:', error);
+      setAlert({ message: 'An error occurred. Please try again.', alertType: 'error' });
     }
+  };
+
+  const handleCloseAlert = () => {
+    setAlert({ message: '', alertType: '' }); // Clear the alert when closed
   };
 
   return (
     <div className="hospital-request-container">
+      {alert.message && <Alert message={alert.message} onClose={handleCloseAlert} />}
       <form className="hospital-request-form" onSubmit={handleSubmit}>
-        <input
-          className="hospital-request-input"
-          type="text"
-          placeholder="Hospital Name"
-          value={formData.hospitalName}
-          onChange={(e) => setFormData({ ...formData, hospitalName: e.target.value })}
-          required
-        />
         <select
           className="hospital-request-input"
           value={formData.bloodType}

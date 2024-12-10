@@ -1,12 +1,16 @@
 import mongoose from 'mongoose';
 
 const hospitalSchema = new mongoose.Schema({
-  email: {
+  name: {
     type: String,
     required: true,
     unique: true,
   },
-  password: {
+  location: {
+    type: String,
+    required: true,
+  },
+  contactNumber: {
     type: String,
     required: true,
   },

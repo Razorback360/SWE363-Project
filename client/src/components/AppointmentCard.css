@@ -1,0 +1,35 @@
+/* Container for appointment cards */
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between cards */
+  padding: 20px; /* Add padding around the container */
+}
+
+/* Styling for individual appointment cards */
+.appointment-card {
+  width: 300px; /* Set the width */
+  background-color: #f9f9f9; /* Light background */
+  border: 1px solid #ddd; /* Border for definition */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 16px; /* Padding inside the card */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+}
+
+/* Hover effect for the appointment card */
+.appointment-card:hover {
+  transform: translateY(-5px); /* Lift the card slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow for emphasis */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .appointments-list {
+    gap: 15px; /* Less space between cards */
+  }
+
+  .appointment-card {
+    width: 90%; /* Full width on smaller screens */
+  }
+}
