@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', async (_req, res) => {
   const allUsers = await RequestModel.find();
-  res.sendStatus(200).json(allUsers);
+  res.status(200).json(allUsers);
 });
 
 router.post('/', async (req, res) => {
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     });
 
     await newRequest.save();
-    res.sendStatus(201).json({
+    res.status(201).json({
       message: 'Blood request added successfully',
       request: newRequest,
     });
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res
-      .sendStatus(500)
+      .status(500)
       .json({ error: 'Failed to add blood request', details: error.message });
   }
   return;
@@ -49,18 +49,18 @@ router.get('/:hospitalId', async (req, res) => {
     // Check if any blood requests were found
     if (!bloodRequests || bloodRequests.length === 0) {
       res
-        .sendStatus(404)
+        .status(404)
         .json({ error: 'No blood requests found for this hospital' });
       return;
     }
 
     // Respond with the list of blood requests
-    res.sendStatus(200).json({ success: true, bloodRequests });
+    res.status(200).json({ success: true, bloodRequests });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching blood requests:', error);
     res
-      .sendStatus(500)
+      .status(500)
 
       .json({ error: 'Internal Server Error', details: error.message });
   }
@@ -72,18 +72,18 @@ router.delete('/:id', async (req, res) => {
 
     const deletedRequest = await RequestModel.findByIdAndDelete(id);
     if (!deletedRequest) {
-      res.sendStatus(404).json({ error: 'Blood request not found' });
+      res.status(404).json({ error: 'Blood request not found' });
       return;
     }
 
-    res.sendStatus(200).json({
+    res.status(200).json({
       message: 'Blood request removed successfully',
       request: deletedRequest,
     });
     return;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    res.sendStatus(500).json({
+    res.status(500).json({
       error: 'Failed to remove blood request',
       details: error.message,
     });
@@ -103,7 +103,7 @@ router.patch('/:id/status', async (req, res) => {
     );
 
     if (!updatedRequest) {
-      res.sendStatus(404).json({ error: 'Blood request not found' });
+      res.status(404).json({ error: 'Blood request not found' });
       return;
     }
 
@@ -115,7 +115,7 @@ router.patch('/:id/status', async (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res
-      .sendStatus(500)
+      .status(500)
       .json({ error: 'Failed to update status', details: error.message });
     return;
   }
