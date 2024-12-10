@@ -45,10 +45,11 @@ router.get('/', async (req, res) => {
     const bloodRequests = await RequestModel.find(query);
 
     res.status(200).json(bloodRequests);
+    return;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: 'Failed to fetch blood requests' });
+    res.status(500).json({ error: 'Failed to fetch blood requests' });
+    return;
   }
 });
 
@@ -70,6 +71,7 @@ router.get('/:hospitalId', async (req, res) => {
 
     // Respond with the list of blood requests
     res.status(200).json({ success: true, bloodRequests });
+    return;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching blood requests:', error);
@@ -77,6 +79,7 @@ router.get('/:hospitalId', async (req, res) => {
       .status(500)
 
       .json({ error: 'Internal Server Error', details: error.message });
+    return;
   }
 });
 

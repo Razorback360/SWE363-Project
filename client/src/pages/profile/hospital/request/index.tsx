@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import React, { useEffect, useState } from 'react';
+
 import Alert from '../../../../components/Alert';
-import './hospitalRequest.css';
 import HospitalProfileSidebar from '../../../../components/HospitalProfileSidebar';
+import './hospitalRequest.css';
 
 interface HospitalRequestPageProps {
   hospitalId: string | null; // Allow for null to validate
 }
 
-
-const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({ hospitalId }) => {
+const HospitalRequestPage: React.FC<HospitalRequestPageProps> = ({
+  hospitalId,
+}) => {
   const [formData, setFormData] = useState({
     bloodType: '',
     quantity: '',

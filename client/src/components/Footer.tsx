@@ -15,9 +15,9 @@ const Footer: FC = () => {
 
         <div className="flex space-x-4">
           <a href="#" className="hover:text-white">
-            Contact
+            Contact Us
           </a>
-          <a href="#" className="hover:text-white">
+          <a href="/feedback" className="hover:text-white">
             Feedback
           </a>
           <a href="#" className="hover:text-white">

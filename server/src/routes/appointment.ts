@@ -40,7 +40,8 @@ router.get('/user/:userId', async (req: Request, res: Response) => {
     if (!appointments.length) {
       res
         .status(404)
-        .json({ error: 'No appointments found for this user' }).send();
+        .json({ error: 'No appointments found for this user' })
+        .send();
       return;
     }
 

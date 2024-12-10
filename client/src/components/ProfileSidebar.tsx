@@ -3,7 +3,7 @@ import {
   HomeIcon,
   InformationCircleIcon,
 } from '@heroicons/react/24/outline';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 import { cn } from '../utils/cn';
 

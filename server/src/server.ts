@@ -4,10 +4,10 @@ import express from 'express';
 import mongoose from 'mongoose';
 
 import appointmentRouter from './routes/appointment.js';
+import authRouter from './routes/auth.js';
 import hospitalRouter from './routes/hospital.js';
 import requestRouter from './routes/request.js';
 import userRouter from './routes/user.js';
-import authRouter from './routes/auth.js';
 
 dotenv.config();
 

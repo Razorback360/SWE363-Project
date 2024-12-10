@@ -5,8 +5,9 @@ import {
   UserIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { cn } from '../utils/cn';
+
 import { checkLogin } from '../utils/checkLogin';
+import { cn } from '../utils/cn';
 
 const Header = () => {
   const [sidebarState, setSidebarState] = useState(false);
@@ -28,21 +29,36 @@ const Header = () => {
           <a href="/feedback">Feedback</a>
         </nav>
         <div className="md:flex flex-row justify-end items-center w-full space-x-2 hidden">
-          <a className={cn(checkLogin().user ? "flex" : "hidden", "rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white")}>
+          <a
+            className={cn(
+              checkLogin().user ? 'flex' : 'hidden',
+              'rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white',
+            )}
+          >
             <BellIcon width={24} height={24} />
           </a>
-          <a className={cn(checkLogin().user ? "flex" : "hidden", "rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white")}>
+          <a
+            className={cn(
+              checkLogin().user ? 'flex' : 'hidden',
+              'rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white',
+            )}
+          >
             <Cog8ToothIcon width={24} height={24} />
           </a>
           <a
-            href={checkLogin().user && checkLogin().isHospital ? '/hospital/profile' : checkLogin().user ? "/profile" : "/login"}
-            className={cn(checkLogin().user ? "flex" : "hidden", "rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white")}
-          >
-            {checkLogin().user ? (
-              <UserIcon width={24} height={24} />
-            ) : (
-              'Login'
+            href={
+              checkLogin().user && checkLogin().isHospital
+                ? '/hospital/profile'
+                : checkLogin().user
+                  ? '/profile'
+                  : '/login'
+            }
+            className={cn(
+              checkLogin().user ? 'flex' : 'hidden',
+              'rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white',
             )}
+          >
+            {checkLogin().user ? <UserIcon width={24} height={24} /> : 'Login'}
           </a>
         </div>
         <div className="md:hidden flex-row justify-end items-center w-full space-x-2 flex">
@@ -71,7 +87,9 @@ const Header = () => {
             href={
               checkLogin().user && checkLogin().isHospital
                 ? '/profile/mobile'
-                : checkLogin().user ? "/profile" : "/login"
+                : checkLogin().user
+                  ? '/profile'
+                  : '/login'
             }
           >
             {checkLogin().user ? 'Profile' : 'Login'}

@@ -1,6 +1,7 @@
-import './signup.css';
 import { useState } from 'react';
+
 import { register } from '../../utils/authAPI';
+import './signup.css';
 
 const Signup = () => {
   const [isHospital, setIsHospital] = useState(false);
@@ -12,22 +13,47 @@ const Signup = () => {
     lastName: '',
     name: '',
     contact: '',
-    location: ''
+    location: '',
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!isHospital) {
-      if (!formData.email || !formData.password || !formData.confirmPassword || !formData.firstName || !formData.lastName) {
-        alert({ message: 'Missing Credentials', alertType: 'error' });
+      if (
+        !formData.email ||
+        !formData.password ||
+        !formData.confirmPassword ||
+        !formData.firstName ||
+        !formData.lastName
+      ) {
+        alert(
+          JSON.stringify({
+            message: 'Missing Credentials',
+            alertType: 'error',
+          }),
+        );
         return;
       }
     } else {
-      if (!formData.email || !formData.password || !formData.confirmPassword || !formData.name || !formData.location || !formData.contact) {
-        alert({ message: 'Missing Credentials', alertType: 'error' });
+      if (
+        !formData.email ||
+        !formData.password ||
+        !formData.confirmPassword ||
+        !formData.firstName || // firstName is used as name
+        !formData.lastName || // lastName is used as locatiopn
+        !formData.contact
+      ) {
+        alert(
+          JSON.stringify({
+            message: 'Missing Credentials',
+            alertType: 'error',
+          }),
+        );
         return;
       }
+      formData.name = formData.firstName;
+      formData.location = formData.lastName;
     }
 
     try {
@@ -37,17 +63,21 @@ const Signup = () => {
       if (response) {
         location.href = '/';
       } else {
-        alert({
-          message: 'An error occurred. Please try again.',
-          alertType: 'error',
-        });
+        alert(
+          JSON.stringify({
+            message: 'An error occurred. Please try again.',
+            alertType: 'error',
+          }),
+        );
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      alert({
-        message: 'An error occurred. Please try again.',
-        alertType: 'error',
-      });
+      alert(
+        JSON.stringify({
+          message: 'An error occurred. Please try again.',
+          alertType: 'error',
+        }),
+      );
     }
   };
 
@@ -58,43 +88,77 @@ const Signup = () => {
         <p>Please sign up to continue</p>
         <form onSubmit={handleSubmit}>
           <label>Email Address</label>
-          <input type="email" placeholder="Placeholder" onChange={(e) => {
-            setFormData({ ...formData, email: e.target.value });
-          }} />
-          <label>{isHospital ? "Name" : "First Name"}</label>
-          <input type="text" placeholder="Placeholder" onChange={(e) => {
-            setFormData({ ...formData, firstName: e.target.value });
-          }} />
-          <label>{isHospital ? "Location" : "Last Name"}</label>
-          <input type="text" placeholder="Placeholder" onChange={(e) => {
-            setFormData({ ...formData, lastName: e.target.value });
-          }} />
-          <label className={isHospital ? "flex" : "hidden"}>Contact Number</label>
-          <input className={isHospital ? "flex" : "hidden"} type="text" placeholder="Placeholder" onChange={(e) => {
-            setFormData({ ...formData, contact: e.target.value });
-          }} />
+          <input
+            type="email"
+            placeholder="Placeholder"
+            onChange={(e) => {
+              setFormData({ ...formData, email: e.target.value });
+            }}
+          />
+          <label>{isHospital ? 'Name' : 'First Name'}</label>
+          <input
+            type="text"
+            placeholder="Placeholder"
+            onChange={(e) => {
+              setFormData({ ...formData, firstName: e.target.value });
+            }}
+          />
+          <label>{isHospital ? 'Location' : 'Last Name'}</label>
+          <input
+            type="text"
+            placeholder="Placeholder"
+            onChange={(e) => {
+              setFormData({ ...formData, lastName: e.target.value });
+            }}
+          />
+          <label className={isHospital ? 'flex' : 'hidden'}>
+            Contact Number
+          </label>
+          <input
+            className={isHospital ? 'flex' : 'hidden'}
+            type="text"
+            placeholder="Placeholder"
+            onChange={(e) => {
+              setFormData({ ...formData, contact: e.target.value });
+            }}
+          />
           <label>Password</label>
-          <input type="password" placeholder="Placeholder" onChange={(e) => {
-            setFormData({ ...formData, password: e.target.value });
-          }} />
+          <input
+            type="password"
+            placeholder="Placeholder"
+            onChange={(e) => {
+              setFormData({ ...formData, password: e.target.value });
+            }}
+          />
           <label>Confirm Password</label>
-          <input type="password" placeholder="Placeholder" onChange={(e) => {
-            setFormData({ ...formData, confirmPassword: e.target.value });
-          }} />
+          <input
+            type="password"
+            placeholder="Placeholder"
+            onChange={(e) => {
+              setFormData({ ...formData, confirmPassword: e.target.value });
+            }}
+          />
           {/* <p className="password-note">
             It must be a combination of minimum 8 letters, numbers, and symbols.
           </p> */}
 
           <div className="sign-up-checkbox-container">
             <div className="checkbox-label">
-              <input type="checkbox" onChange={(e) => { if (e.target.checked) { setIsHospital(true); } else { setIsHospital(false); } }} />
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setIsHospital(true);
+                  } else {
+                    setIsHospital(false);
+                  }
+                }}
+              />
               <label>I am a hospital.</label>
             </div>
           </div>
 
-          <button type="submit">
-            Sign Up
-          </button>
+          <button type="submit">Sign Up</button>
           <p>
             Have an account? <a href="/login">Sign in</a>
           </p>

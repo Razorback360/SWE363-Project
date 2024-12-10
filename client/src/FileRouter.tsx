@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 
 interface Preserved {
   _app?: React.ComponentType;

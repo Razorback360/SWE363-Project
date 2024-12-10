@@ -63,7 +63,6 @@ router.get('/search', async (req, res) => {
   try {
     const queryParam = req.query.query;
 
-  
     if (!queryParam || typeof queryParam !== 'string') {
       res.status(400).json({ error: 'Search query must be a single string' });
       return;
@@ -72,16 +71,19 @@ router.get('/search', async (req, res) => {
     const hospitals = await Hospital.find({
       $or: [
         { name: { $regex: new RegExp(queryParam, 'i') } },
-        { location: { $regex: new RegExp(queryParam, 'i') } }
-      ]
+        { location: { $regex: new RegExp(queryParam, 'i') } },
+      ],
     });
 
     if (hospitals.length === 0) {
-      res.status(404).json({ error: 'No hospitals found matching the search criteria' });
+      res
+        .status(404)
+        .json({ error: 'No hospitals found matching the search criteria' });
       return;
     }
 
     res.status(200).json(hospitals);
+    return;
   } catch (error) {
     console.error('Error searching hospitals:', error);
     res.status(500).json({ error: 'Internal Server Error' });
