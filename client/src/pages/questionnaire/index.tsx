@@ -1,4 +1,4 @@
-import "./Questionnaire.css";
+import './Questionnaire.css';
 
 const MedicalQuestionnaire = () => {
   return (
@@ -56,7 +56,9 @@ const MedicalQuestionnaire = () => {
             <div className="form-group">
               <label htmlFor="gender">Gender</label>
               <select id="gender" name="gender" required>
-                <option value="" disabled selected>Select your gender</option>
+                <option value="" disabled selected>
+                  Select your gender
+                </option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
@@ -64,7 +66,9 @@ const MedicalQuestionnaire = () => {
             <div className="form-group">
               <label htmlFor="bloodType">Blood Type</label>
               <select id="bloodType" name="bloodType" required>
-                <option value="" disabled selected>Select your blood type</option>
+                <option value="" disabled selected>
+                  Select your blood type
+                </option>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
@@ -98,12 +102,16 @@ const MedicalQuestionnaire = () => {
             <div className="form-group">
               <label htmlFor="previousDonation">Previous Blood Donation</label>
               <select id="previousDonation" name="previousDonation" required>
-                <option value="" disabled selected>Have you donated blood before?</option>
+                <option value="" disabled selected>
+                  Have you donated blood before?
+                </option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
             </div>
-            <button type="submit" className="submit-button">Submit</button>
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
           </form>
         </div>
       </div>

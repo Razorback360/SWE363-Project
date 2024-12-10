@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const scheduleAppointment = async (appointmentData: any) => {
   try {
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'; // For Vite

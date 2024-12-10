@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+
 import Hospital from '../models/hospital.js';
 
 const router = Router();
@@ -38,16 +39,19 @@ router.post('/', async (req, res) => {
     const { name, location, contactNumber } = req.body;
 
     if (!name || !location || !contactNumber) {
-      return res.status(400).json({ error: 'All fields are required' });
+      res.sendStatus(400).json({ error: 'All fields are required' });
+      return;
     }
 
     const newHospital = new Hospital({ name, location, contactNumber });
     const savedHospital = await newHospital.save();
 
-    res.status(201).json(savedHospital);
+    res.sendStatus(201).json(savedHospital);
+    return;
   } catch (error) {
     console.error('Error creating hospital:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.sendStatus(500).json({ error: 'Internal Server Error' });
+    return;
   }
 });
 
