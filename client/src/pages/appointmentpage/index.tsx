@@ -11,14 +11,23 @@ interface Appointment {
   userId: string | null;
 }
 
+interface Hospital {
+  id: string;
+  name: string;
+  location: string;
+  contactNumber: string;
+}
+
 const HospitalAppointmentsPage: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [hospitals, setHospitals] = useState<Hospital[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [formData, setFormData] = useState({
     donorName: '',
     date: '',
     time: '',
   });
+  const [error, setError] = useState<string | null>(null);
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   // Define the base URL
@@ -66,6 +75,25 @@ const HospitalAppointmentsPage: React.FC = () => {
     fetchAppointments();
   }, []);
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${apiUrl}/api/hospitals/search?query=${searchQuery}`);
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(`Failed to fetch hospitals, status: ${response.status}`);
+      }
+      setHospitals(data);
+    } catch (error) {
+      console.error('Error fetching hospitals:', error);
+      setError('Failed to load hospitals.');
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -96,7 +124,20 @@ const HospitalAppointmentsPage: React.FC = () => {
   return (
     <div className="appointments-container">
       <h1>Scheduled Appointments</h1>
+      <form onSubmit={handleSearchSubmit}>
+        <input
+          type="text"
+          placeholder="Search hospitals..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        <button type="submit">Search</button>
+      </form>
+      {error && <p>{error}</p>}
       <div className="appointments-list">
+        {hospitals.map((hospital) => (
+          <div key={hospital.id}>{hospital.name} - {hospital.location}</div>
+        ))}
         {appointments.map((appointment) => (
           <AppointmentCard key={appointment.id} appointment={appointment} />
         ))}

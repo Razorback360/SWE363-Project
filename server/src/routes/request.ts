@@ -37,6 +37,20 @@ router.post('/', async (req, res) => {
   }
   return;
 });
+router.get('/', async (req, res) => {
+  try {
+    const { bloodType } = req.query;
+
+    const query = bloodType ? { bloodType } : {};
+    const bloodRequests = await RequestModel.find(query);
+
+    res.status(200).json(bloodRequests);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: 'Failed to fetch blood requests' });
+  }
+});
 
 // Route to fetch all blood requests for a specific hospital
 router.get('/:hospitalId', async (req, res) => {

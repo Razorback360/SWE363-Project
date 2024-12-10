@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      blood-donation-monorepo:
+        specifier: 'file:'
+        version: 'file:'
     devDependencies:
       '@eslint/js':
         specifier: ^9.14.0
@@ -47,6 +51,9 @@ importers:
       '@heroicons/react':
         specifier: ^2.1.5
         version: 2.1.5(react@18.3.1)
+      client:
+        specifier: 'file:'
+        version: 'link:'
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -111,6 +118,9 @@ importers:
       mongoose:
         specifier: ^8.8.0
         version: 8.8.0
+      server:
+        specifier: 'file:'
+        version: 'link:'
     devDependencies:
       '@types/bcrypt':
         specifier: ^5.0.2
@@ -1005,6 +1015,9 @@ packages:
 
   binary-searching@2.0.5:
     resolution: {integrity: sha512-v4N2l3RxL+m4zDxyxz3Ne2aTmiPn8ZUpKFpdPtO+ItW1NcTCXA7JeHG5GMBSvoKSkQZ9ycS+EouDVxYB9ufKWA==}
+
+  'blood-donation-monorepo@file:':
+    resolution: {directory: '', type: directory}
 
   body-parser@1.20.3:
     resolution: {integrity: sha512-7rAxByjUMqQ3/bHJy7D6OGXvx/MMc4IqBn/X0fcM1QUcAItpZrBEYhWGem+tzXH90c+G01ypMcYJBO9Y30203g==}
@@ -3132,6 +3145,8 @@ snapshots:
   binary-extensions@2.3.0: {}
 
   binary-searching@2.0.5: {}
+
+  'blood-donation-monorepo@file:': {}
 
   body-parser@1.20.3:
     dependencies:
