@@ -5,13 +5,11 @@ import {
   UserIcon,
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
 import { cn } from '../utils/cn';
+import { checkLogin } from '../utils/checkLogin';
 
 const Header = () => {
   const [sidebarState, setSidebarState] = useState(false);
-  const location = useLocation();
   return (
     <>
       <div className="flex flex-row w-full border-b p-5 pl-10 pr-10 ">
@@ -30,17 +28,17 @@ const Header = () => {
           <a href="/feedback">Feedback</a>
         </nav>
         <div className="md:flex flex-row justify-end items-center w-full space-x-2 hidden">
-          <a className="rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white">
+          <a className={cn(checkLogin().user ? "flex" : "hidden", "rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white")}>
             <BellIcon width={24} height={24} />
           </a>
-          <a className="rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white">
+          <a className={cn(checkLogin().user ? "flex" : "hidden", "rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white")}>
             <Cog8ToothIcon width={24} height={24} />
           </a>
           <a
-            href={location.pathname.includes('profile') ? '/profile' : '/login'}
-            className="rounded-full bg-gray-300 flex items-center justify-center p-2 hover:cursor-pointer hover:shadow-md hover:border-gray-200 border border-white"
+            href={checkLogin().user && checkLogin().isHospital ? '/hospital/profile' : checkLogin().user ? "/profile" : "/login"}
+            className={cn(checkLogin().user ? "flex" : "hidden", "rounded-full flex items-center justify-center hover:cursor-pointer hover:shadow-md hover:border-gray-200 p-2 border border-white")}
           >
-            {location.pathname.includes('profile') ? (
+            {checkLogin().user ? (
               <UserIcon width={24} height={24} />
             ) : (
               'Login'
@@ -71,12 +69,12 @@ const Header = () => {
           <a
             className="p-2 border-b w-1/2"
             href={
-              location.pathname.includes('profile')
+              checkLogin().user && checkLogin().isHospital
                 ? '/profile/mobile'
-                : '/login'
+                : checkLogin().user ? "/profile" : "/login"
             }
           >
-            {location.pathname.includes('profile') ? 'Profile' : 'Login'}
+            {checkLogin().user ? 'Profile' : 'Login'}
           </a>
           <a className="p-2 border-b w-1/2" href="/404">
             Donate
