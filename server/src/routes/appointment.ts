@@ -29,6 +29,30 @@ router.get('/:hospitalId', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/user/:userId', async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+    const appointments = await Appointment.find({ userId }).populate(
+      'hospitalId',
+      'name location contactNumber',
+    );
+
+    if (!appointments.length) {
+      res
+        .status(404)
+        .json({ error: 'No appointments found for this user' }).send();
+      return;
+    }
+
+    res.status(200).json(appointments).send();
+    return;
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' }).send();
+    return;
+  }
+});
+
 // Route to get all appointments (no filtering by hospitalId)
 router.get('/', async (req: Request, res: Response) => {
   try {

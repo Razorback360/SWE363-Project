@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
-import Alert from '../../components/Alert';
+import Alert from '../../../../components/Alert';
 import './hospitalRequest.css';
-import HospitalProfileSidebar from '../../components/HospitalProfileSidebar';
+import HospitalProfileSidebar from '../../../../components/HospitalProfileSidebar';
 
 interface HospitalRequestPageProps {
   hospitalId: string | null; // Allow for null to validate

@@ -1,15 +1,38 @@
+import { useEffect, useState } from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
-
 import Badge from '../../components/Badge';
 import ProfileSidebar from '../../components/ProfileSidebar';
 import './donation.css';
+import { checkLogin } from '../../utils/checkLogin';
 
 export default function Donations() {
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      const { user } = checkLogin();
+      if (user) {
+        try {
+          const response = await fetch(`http://127.0.0.1:5000/api/appointment/user/${user}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+          setAppointments(data);
+        } catch (error) {
+          console.error('Error fetching user appointments:', error);
+        }
+      }
+    };
+
+    fetchAppointments();
+  }, []);
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       <aside className="w-1/5 bg-white p-5 shadow-md md:flex flex-col hidden">
         <div className="text-gray-600 mb-5">
-          <h1 className="text-xl font-bold">Project Title</h1>
+          <h1 className="text-xl font-bold">Previous Donations</h1>
         </div>
         <ProfileSidebar />
       </aside>
@@ -25,62 +48,28 @@ export default function Donations() {
             Previous Donations
           </h2>
         </header>
-        <section className="flex items-center mb-8 overflow-x-auto">
-          <table className="table-auto">
-            <thead>
-              <tr>
-                <th>Hospital</th>
-                <th>Donation Location</th>
-                <th>Donation Date</th>
-                <th>Donation Amount</th>
-                <th>Donation ID</th>
-                <th>Severity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Jane Doe</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
+        <table className="min-w-full bg-white">
+          <thead>
+            <tr>
+              <th>Recipients</th>
+              <th>Request Date</th>
+              <th>Request Blood</th>
+              <th>Requested Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {appointments.map((appointment) => (
+              <tr key={appointment._id}>
+                <td>{appointment.date}</td>
+                <td>{appointment.time}</td>
+                <td>{appointment.hospitalId.name}</td>
                 <td>
                   <Badge badgeType="high">High</Badge>
                 </td>
               </tr>
-              <tr>
-                <td>Jane Doe</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>
-                  <Badge badgeType="medium">Medium</Badge>
-                </td>
-              </tr>
-              <tr>
-                <td>Jane Doe</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>
-                  <Badge badgeType="low">Low</Badge>
-                </td>
-              </tr>
-              <tr>
-                <td>Jane Doe</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>Cell Text</td>
-                <td>
-                  <Badge>Badge</Badge>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+            ))}
+          </tbody>
+        </table>
       </main>
     </div>
   );
